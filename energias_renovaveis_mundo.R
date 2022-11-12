@@ -51,5 +51,40 @@ energy2 <- energy %>%
                        "Uruguay", "Venezuela")) %>%
   view()
 
+# Gráficos ---------------------------------------------------------------------------------------------------------------------------------
+
+c4a_gui()
+c4a("dark24", 20)
+
+ggplot(energy1, aes(x = fct_reorder(Entity, media), 
+                    y = media, fill = Entity)) +
+  geom_col(width = 0.9) +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.3, size = 0.8) +
+  scale_fill_manual(values = c("#2E91E5", "#E15F99", 
+                                "#1CA71C", "#FB0D0D", 
+                                "#DA16FF", "#222A2A", 
+                                "#B68100", "#750D86", 
+                                "#EB663B", "#511CFB", 
+                                "#00A08B", "#FB00D1", 
+                                "#FC0080", "#B2828D", 
+                                "#6C7C32", "#778AAE", 
+                                "#862A16", "#A777F1", 
+                                "#620042", "#1616A7")) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
+  coord_flip() +
+  labs(x = "Países", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021") +
+  theme_light() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black"))
+
+
+
+
+
+
+
 
 

@@ -27,7 +27,7 @@ energy <- energy %>%
   rename(por_energ = Renewables....equivalent.primary.energy.) %>%
   view()
 
-# Para a América Latina
+# Para os países mais desenvolvidos da América Latina
 
 energy1 <- energy %>%
   filter(Entity %in% c("Argentina", "Bolivia", "Brazil", "Chile",
@@ -80,6 +80,25 @@ ggplot(energy1, aes(x = fct_reorder(Entity, media),
   theme(legend.position = "none",
         axis.text = element_text(color = "black"))
 
+ggplot(energy2, aes(x = Year, y = por_energ, 
+                    group = Entity, color = Entity)) +
+  geom_point() +
+  geom_line() +
+  scale_color_manual(values = c("#2E91E5", "#E15F99", 
+                                "#1CA71C", "#FB0D0D", 
+                                "#DA16FF", "#222A2A", 
+                                "#B68100", "#750D86", 
+                                "#EB663B", "#511CFB", 
+                                "#00A08B", "#FB00D1", 
+                                "#FC0080", "#B2828D", 
+                                "#6C7C32", "#778AAE", 
+                                "#862A16", "#A777F1", 
+                                "#620042", "#1616A7")) +
+  labs(x = "Tempo (anos)", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021") +
+  theme_light() +
+  theme(axis.text = element_text(color = "black"))
 
 
 

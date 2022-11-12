@@ -30,12 +30,7 @@ energy <- energy %>%
 # Para os países mais desenvolvidos da América Latina
 
 energy1 <- energy %>%
-  filter(Entity %in% c("Argentina", "Bolivia", "Brazil", "Chile",
-                       "Colombia", "Costa Rica", "Cuba", 
-                       "Dominican Republic", "Ecuador", "El Salvador",
-                       "Guatemala", "Haiti", "Honduras", "Mexico",
-                       "Nicaragua", "Panama", "Paraguay", "Peru",
-                       "Uruguay", "Venezuela")) %>%
+  filter(Entity %in% c("Argentina", "Brazil", "Chile", "Peru", "Colombia")) %>%
   group_by(Entity) %>%
   summarise(media = mean(por_energ),
             sd = sd(por_energ), n = n(),
@@ -43,34 +38,22 @@ energy1 <- energy %>%
   view()
 
 energy2 <- energy %>%
-  filter(Entity %in% c("Argentina", "Bolivia", "Brazil", "Chile",
-                       "Colombia", "Costa Rica", "Cuba", 
-                       "Dominican Republic", "Ecuador", "El Salvador",
-                       "Guatemala", "Haiti", "Honduras", "Mexico",
-                       "Nicaragua", "Panama", "Paraguay", "Peru",
-                       "Uruguay", "Venezuela")) %>%
+  filter(Entity %in% c("Argentina", "Brazil", "Chile", "Peru", "Colombia")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 c4a_gui()
-c4a("dark24", 20)
+c4a("dark2", 6)
 
 ggplot(energy1, aes(x = fct_reorder(Entity, media), 
                     y = media, fill = Entity)) +
   geom_col(width = 0.9) +
   geom_errorbar(aes(ymin = media - se, ymax = media + se),
                 width = 0.3, size = 0.8) +
-  scale_fill_manual(values = c("#2E91E5", "#E15F99", 
-                                "#1CA71C", "#FB0D0D", 
-                                "#DA16FF", "#222A2A", 
-                                "#B68100", "#750D86", 
-                                "#EB663B", "#511CFB", 
-                                "#00A08B", "#FB00D1", 
-                                "#FC0080", "#B2828D", 
-                                "#6C7C32", "#778AAE", 
-                                "#862A16", "#A777F1", 
-                                "#620042", "#1616A7")) +
+  scale_fill_manual(values = c("#1B9E77", "#D95F02",
+                               "#7570B3", "#E7298A",
+                               "#66A61E")) +
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
   coord_flip() +
   labs(x = "Países", 
@@ -82,18 +65,10 @@ ggplot(energy1, aes(x = fct_reorder(Entity, media),
 
 ggplot(energy2, aes(x = Year, y = por_energ, 
                     group = Entity, color = Entity)) +
-  geom_point() +
-  geom_line() +
-  scale_color_manual(values = c("#2E91E5", "#E15F99", 
-                                "#1CA71C", "#FB0D0D", 
-                                "#DA16FF", "#222A2A", 
-                                "#B68100", "#750D86", 
-                                "#EB663B", "#511CFB", 
-                                "#00A08B", "#FB00D1", 
-                                "#FC0080", "#B2828D", 
-                                "#6C7C32", "#778AAE", 
-                                "#862A16", "#A777F1", 
-                                "#620042", "#1616A7")) +
+  geom_line(size = 1.8) +
+  scale_color_manual(values = c("#1B9E77", "#D95F02",
+                               "#7570B3", "#E7298A",
+                               "#66A61E")) +
   labs(x = "Tempo (anos)", 
        y = "Porcentagem",
        title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021") +

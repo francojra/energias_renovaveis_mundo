@@ -30,7 +30,8 @@ energy <- energy %>%
 # Para os países mais desenvolvidos da América Latina
 
 energy1 <- energy %>%
-  filter(Entity %in% c("Argentina", "Brazil", "Chile", "Peru", "Colombia")) %>%
+  filter(Entity %in% c("Argentina", "Brazil", "Chile", 
+                       "Peru", "Colombia", "Mexico")) %>%
   group_by(Entity) %>%
   summarise(media = mean(por_energ),
             sd = sd(por_energ), n = n(),
@@ -38,7 +39,24 @@ energy1 <- energy %>%
   view()
 
 energy2 <- energy %>%
-  filter(Entity %in% c("Argentina", "Brazil", "Chile", "Peru", "Colombia")) %>%
+  filter(Entity %in% c("Argentina", "Brazil", "Chile", 
+                       "Peru", "Colombia", "Mexico")) %>%
+  view()
+
+# Para os países mais desenvolvidos do mundo
+
+energy1 <- energy %>%
+    filter(Entity %in% c("Luxembourg", "Singapore", "Ireland", "Qatar", "Denmark", 
+                       "Switzerland", "Norway", "United States", "Hong Kong")) %>%
+  group_by(Entity) %>%
+  summarise(media = mean(por_energ),
+            sd = sd(por_energ), n = n(),
+            se = sd/sqrt(n)) %>%
+  view()
+
+energy2 <- energy %>%
+  filter(Entity %in% c("Argentina", "Brazil", "Chile", 
+                       "Peru", "Colombia", "Mexico")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
@@ -53,7 +71,7 @@ ggplot(energy1, aes(x = fct_reorder(Entity, media),
                 width = 0.3, size = 0.8) +
   scale_fill_manual(values = c("#1B9E77", "#D95F02",
                                "#7570B3", "#E7298A",
-                               "#66A61E")) +
+                               "#66A61E", "#E6AB02")) +
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
   coord_flip() +
   labs(x = "Países", 
@@ -68,10 +86,11 @@ ggplot(energy2, aes(x = Year, y = por_energ,
   geom_line(size = 1.8) +
   scale_color_manual(values = c("#1B9E77", "#D95F02",
                                "#7570B3", "#E7298A",
-                               "#66A61E")) +
+                               "#66A61E", "#E6AB02")) +
   labs(x = "Tempo (anos)", 
        y = "Porcentagem",
-       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021") +
+       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021",
+       color = "Países") +
   theme_light() +
   theme(axis.text = element_text(color = "black"))
 

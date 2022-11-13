@@ -45,7 +45,7 @@ energy2 <- energy %>%
 
 # Para os países mais desenvolvidos do mundo
 
-energy1 <- energy %>%
+energy3 <- energy %>%
     filter(Entity %in% c("Luxembourg", "Singapore", "Ireland", "Qatar", "Denmark", 
                        "Switzerland", "Norway", "United States", "Hong Kong")) %>%
   group_by(Entity) %>%
@@ -54,9 +54,9 @@ energy1 <- energy %>%
             se = sd/sqrt(n)) %>%
   view()
 
-energy2 <- energy %>%
-  filter(Entity %in% c("Argentina", "Brazil", "Chile", 
-                       "Peru", "Colombia", "Mexico")) %>%
+energy4 <- energy %>%
+    filter(Entity %in% c("Luxembourg", "Singapore", "Ireland", "Qatar", "Denmark", 
+                       "Switzerland", "Norway", "United States", "Hong Kong")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ energy2 <- energy %>%
 c4a_gui()
 c4a("dark2", 6)
 
-ggplot(energy1, aes(x = fct_reorder(Entity, media), 
+g1 <- ggplot(energy1, aes(x = fct_reorder(Entity, media), 
                     y = media, fill = Entity)) +
   geom_col(width = 0.9) +
   geom_errorbar(aes(ymin = media - se, ymax = media + se),
@@ -81,7 +81,7 @@ ggplot(energy1, aes(x = fct_reorder(Entity, media),
   theme(legend.position = "none",
         axis.text = element_text(color = "black"))
 
-ggplot(energy2, aes(x = Year, y = por_energ, 
+g2 <- ggplot(energy2, aes(x = Year, y = por_energ, 
                     group = Entity, color = Entity)) +
   geom_line(size = 1.8) +
   scale_color_manual(values = c("#1B9E77", "#D95F02",
@@ -94,7 +94,43 @@ ggplot(energy2, aes(x = Year, y = por_energ,
   theme_light() +
   theme(axis.text = element_text(color = "black"))
 
+c4a_gui()
+c4a("antique", 9)
 
+g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media), 
+                    y = media, fill = Entity)) +
+  geom_col(width = 0.9) +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.3, size = 0.8) +
+  scale_fill_manual(values = c("#855C75", "#D9AF6B",
+                               "#AF6458", "#736F4C",
+                               "#526A83", "#625377",
+                               "#68855C", "#9C9C5E",
+                               "#A06177")) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
+  coord_flip() +
+  labs(x = "Países", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021") +
+  theme_light() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black"))
+g3
+
+g4 <- ggplot(energy4, aes(x = Year, y = por_energ, 
+                    group = Entity, color = Entity)) +
+  geom_line(size = 1.8) +
+  scale_color_manual(values = c("#855C75", "#D9AF6B",
+                               "#AF6458", "#736F4C",
+                               "#526A83", "#625377",
+                               "#68855C", "#9C9C5E",
+                               "#A06177")) +
+  labs(x = "Tempo (anos)", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021",
+       color = "Países") +
+  theme_light() +
+  theme(axis.text = element_text(color = "black"))
 
 
 

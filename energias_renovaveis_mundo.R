@@ -59,7 +59,6 @@ g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media),
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
   scale_x_discrete(labels = c("Estados Unidos", "Japão", 
                               "China", "Reino Unido", "Alemanha")) +
-  coord_flip() +
   labs(x = "Países", 
        y = "Porcentagem",
        title = "Energia primária de fontes renováveis\n entre os anos de 2018 e 2021") +
@@ -83,7 +82,7 @@ g4 <- ggplot(energy4, aes(x = Year, y = por_energ,
   theme_light() +
   theme(axis.text = element_text(color = "black"))
 g4
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+
 
 
 

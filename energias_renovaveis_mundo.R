@@ -63,6 +63,43 @@ energy4 <- energy %>%
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
+g1 <- ggplot(energy3, aes(x = fct_reorder(Entity, media), 
+                    y = media, fill = Entity)) +
+  geom_col(width = 0.9) +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.3, size = 0.8) +
+  scale_fill_manual(values = c("#7F3C8D", "#11A579", 
+                                "#3969AC", "#F2B701", 
+                                "#E73F74", "#80BA5A", 
+                                "#E68310", "#008695", 
+                                "#CF1C90", "#A5AA99")) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
+  coord_flip() +
+  labs(x = "Países", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 2000 e 2021") +
+  theme_light() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black"))
+g1
+
+g2 <- ggplot(energy4, aes(x = Year, y = por_energ, 
+                    group = Entity, color = Entity)) +
+  geom_line(size = 1.8) +
+  scale_color_manual(values = c("#7F3C8D", "#11A579", 
+                                "#3969AC", "#F2B701", 
+                                "#E73F74", "#80BA5A", 
+                                "#E68310", "#008695", 
+                                "#CF1C90", "#A5AA99")) +
+  scale_x_continuous(expand = expansion(mult = c(0,0))) +
+  labs(x = "Tempo (anos)", 
+       y = "Porcentagem",
+       title = "Energia primária de fontes renováveis\n entre os anos de 2000 e 2021",
+       color = "Países") +
+  theme_light() +
+  theme(axis.text = element_text(color = "black"))
+g2
+
 g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media), 
                     y = media, fill = Entity)) +
   geom_col(width = 0.9) +

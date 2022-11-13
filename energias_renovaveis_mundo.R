@@ -102,11 +102,11 @@ g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media),
   geom_col(width = 0.9) +
   geom_errorbar(aes(ymin = media - se, ymax = media + se),
                 width = 0.3, size = 0.8) +
-  scale_fill_manual(values = c("#855C75", "#D9AF6B",
-                               "#AF6458", "#736F4C",
-                               "#526A83", "#625377",
-                               "#68855C", "#9C9C5E",
-                               "#A06177")) +
+  scale_fill_manual(values = c("#CC6677", "#332288", 
+                                "#DDCC77", "#117733", 
+                                "#88CCEE", "#882255", 
+                                "#44AA99", "#999933", 
+                                "#AA4499")) +
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
   coord_flip() +
   labs(x = "Países", 
@@ -120,18 +120,18 @@ g3
 g4 <- ggplot(energy4, aes(x = Year, y = por_energ, 
                     group = Entity, color = Entity)) +
   geom_line(size = 1.8) +
-  scale_color_manual(values = c("#855C75", "#D9AF6B",
-                               "#AF6458", "#736F4C",
-                               "#526A83", "#625377",
-                               "#68855C", "#9C9C5E",
-                               "#A06177")) +
+  scale_color_manual(values = c("#CC6677", "#332288", 
+                                "#DDCC77", "#117733", 
+                                "#88CCEE", "#882255", 
+                                "#44AA99", "#999933", 
+                                "#AA4499")) +
   labs(x = "Tempo (anos)", 
        y = "Porcentagem",
        title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021",
        color = "Países") +
   theme_light() +
   theme(axis.text = element_text(color = "black"))
-
+g4
 
 
 

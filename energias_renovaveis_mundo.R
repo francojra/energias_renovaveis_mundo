@@ -43,11 +43,11 @@ energy2 <- energy %>%
                        "Peru", "Colombia", "Mexico")) %>%
   view()
 
-# Para os países mais desenvolvidos do mundo
+# Para os países com as maiores economias do mundo
 
 energy3 <- energy %>%
-    filter(Entity %in% c("Luxembourg", "Singapore", "Ireland", "Qatar", "Denmark", 
-                       "Switzerland", "Norway", "United States", "Hong Kong")) %>%
+    filter(Entity %in% c("China", "Japan", "Germany", "United Kingdom", "India", 
+                       "France", "Italy", "United States", "Canada")) %>%
   group_by(Entity) %>%
   summarise(media = mean(por_energ),
             sd = sd(por_energ), n = n(),
@@ -55,8 +55,8 @@ energy3 <- energy %>%
   view()
 
 energy4 <- energy %>%
-    filter(Entity %in% c("Luxembourg", "Singapore", "Ireland", "Qatar", "Denmark", 
-                       "Switzerland", "Norway", "United States", "Hong Kong")) %>%
+    filter(Entity %in% c("China", "Japan", "Germany", "United Kingdom", "India", 
+                       "France", "Italy", "United States", "Canada")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------

@@ -47,7 +47,7 @@ energy2 <- energy %>%
 
 energy3 <- energy %>%
     filter(Entity %in% c("China", "Japan", "Germany", "United Kingdom", "India", 
-                       "France", "Italy", "United States", "Canada")) %>%
+                       "France", "Italy", "United States", "Canada", "South Korea")) %>%
   group_by(Entity) %>%
   summarise(media = mean(por_energ),
             sd = sd(por_energ), n = n(),
@@ -56,7 +56,7 @@ energy3 <- energy %>%
 
 energy4 <- energy %>%
     filter(Entity %in% c("China", "Japan", "Germany", "United Kingdom", "India", 
-                       "France", "Italy", "United States", "Canada")) %>%
+                       "France", "Italy", "United States", "Canada", "South Korea")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
@@ -102,11 +102,11 @@ g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media),
   geom_col(width = 0.9) +
   geom_errorbar(aes(ymin = media - se, ymax = media + se),
                 width = 0.3, size = 0.8) +
-  scale_fill_manual(values = c("#CC6677", "#332288", 
-                                "#DDCC77", "#117733", 
-                                "#88CCEE", "#882255", 
-                                "#44AA99", "#999933", 
-                                "#AA4499")) +
+  scale_fill_manual(values = c("#7F3C8D", "#11A579", 
+                                "#3969AC", "#F2B701", 
+                                "#E73F74", "#80BA5A", 
+                                "#E68310", "#008695", 
+                                "#CF1C90", "#A5AA99")) +
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
   coord_flip() +
   labs(x = "Países", 
@@ -120,11 +120,11 @@ g3
 g4 <- ggplot(energy4, aes(x = Year, y = por_energ, 
                     group = Entity, color = Entity)) +
   geom_line(size = 1.8) +
-  scale_color_manual(values = c("#CC6677", "#332288", 
-                                "#DDCC77", "#117733", 
-                                "#88CCEE", "#882255", 
-                                "#44AA99", "#999933", 
-                                "#AA4499")) +
+  scale_color_manual(values = c("#7F3C8D", "#11A579", 
+                                "#3969AC", "#F2B701", 
+                                "#E73F74", "#80BA5A", 
+                                "#E68310", "#008695", 
+                                "#CF1C90", "#A5AA99")) +
   labs(x = "Tempo (anos)", 
        y = "Porcentagem",
        title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021",

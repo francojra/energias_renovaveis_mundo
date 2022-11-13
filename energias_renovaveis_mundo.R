@@ -57,6 +57,8 @@ g3 <- ggplot(energy3, aes(x = fct_reorder(Entity, media),
                                 "#7570B3", "#E7298A", 
                                 "#66A61E")) +
   scale_y_continuous(expand = expansion(mult = c(0,0.1))) +
+  scale_x_discrete(labels = c("Estados Unidos", "Japão", 
+                              "China", "Reino Unido", "Alemanha")) +
   coord_flip() +
   labs(x = "Países", 
        y = "Porcentagem",
@@ -71,8 +73,9 @@ g4 <- ggplot(energy4, aes(x = Year, y = por_energ,
   geom_line(size = 1.3) +
   scale_color_manual(values = c("#1B9E77", "#D95F02", 
                                  "#7570B3", "#E7298A", 
-                                 "#66A61E")) +
-  scale_x_continuous(expand = expansion(mult = c(0.01,0.01))) +
+                                 "#66A61E"),
+                     labels = c("China", "Alemanha", "Japão",
+                                "Reino Unido", "Estados Unidos")) +
   labs(x = "Tempo (anos)", 
        y = "Porcentagem",
        title = "Energia primária de fontes renováveis\n entre os anos de 1965 e 2021",

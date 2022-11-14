@@ -16,9 +16,6 @@ library(gridExtra)
 energy <- read.csv("renewable-share-energy.csv")
 view(energy)
 names(energy)
-energy_fonte <- read.csv("modern-renewable-prod.csv")
-view(energy_fonte)
-names(energy_fonte)
 
 # Manipular dados --------------------------------------------------------------------------------------------------------------------------
 
